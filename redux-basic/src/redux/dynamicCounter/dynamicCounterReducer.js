@@ -8,12 +8,12 @@ const dynamicCounterReducer = (state = initialState, action) => {
         case DINCREMENT:
             return {
                 ...state,
-                value: state.value + action.payload.value,
+                value: state.value + action.payload,
             }
         case DDECREMENT:
             return {
                 ...state,
-                value: state.value - action.payload.value,
+                value: state.value - action.payload,
             }
 
         default:
