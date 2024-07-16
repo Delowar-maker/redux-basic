@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import { colorChanged, statusChanged } from "../redux/filters/action";
+import { colorChanged, statusChanged } from "../redux/filters/actions";
+
 const numberOfTodos = (no_of_todos) => {
   switch (no_of_todos) {
     case 0:
@@ -10,7 +11,8 @@ const numberOfTodos = (no_of_todos) => {
       return `${no_of_todos} tasks`;
   }
 };
-const Footer = () => {
+
+export default function Footer() {
   const todos = useSelector((state) => state.todos);
   const filters = useSelector((state) => state.filters);
 
@@ -29,6 +31,7 @@ const Footer = () => {
       dispatch(colorChanged(color, "added"));
     }
   };
+
   return (
     <div className="mt-4 flex justify-between text-xs text-gray-500">
       <p>{numberOfTodos(todosRemaining)} left</p>
@@ -76,6 +79,4 @@ const Footer = () => {
       </ul>
     </div>
   );
-};
-
-export default Footer;
+}

@@ -1,17 +1,15 @@
 const initialState = [
     {
         id: 1,
-        text: 'Learn React js',
+        text: "Learn React JS",
         completed: true,
     },
     {
-        id: 1,
-        text: 'Learn Redux',
+        id: 2,
+        text: "Learn Redux",
         completed: false,
         color: "red",
-
     },
-]
+];
 
-
-export default initialState
+export default initialState;
