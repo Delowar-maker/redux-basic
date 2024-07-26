@@ -6,5 +6,9 @@ export const apiSlice = createApi({
         baseUrl: "http://localhost:9000",
 
     }),
-    endpoints: (builder) => ({}),
+    endpoints: (builder) => ({
+        getVideos: builder.query({
+
+        })
+    }),
 });
