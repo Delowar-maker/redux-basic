@@ -10,28 +10,43 @@ import RelatedVideos from "../video/related/RelatedVideos";
 export default function Video() {
   const { videoId } = useParams();
   const { data: video, isLoading, isError } = useGetVideoQuery(videoId);
-  let content = null;
-  if (isLoading) {
-    content = (
-      <>
-        <PlayerLoader />
-        <DescriptionLoader />
-      </>
-    );
-  }
+  //   let content = null;
+  //   if (isLoading) {
+  //     content = (
+  //       <>
+  //         <PlayerLoader />
+  //         <DescriptionLoader />
+  //       </>
+  //     );
+  //   }
 
-  if (!isLoading && isError) {
-    content = <Error message="There was an error!" />;
-  }
+  //   if (!isLoading && isError) {
+  //     content = <Error message="There was an error!" />;
+  //   }
 
-  if (!isLoading && !isError && video?.id) {
-    content = (
-      <>
-        <Player link={video.link} title={video.title} />
-        <Description video={video} />
-      </>
-    );
-  }
+  //   if (!isLoading && !isError && video?.id) {
+  //     content = (
+  //       <>
+  //         <Player link={video.link} title={video.title} />
+  //         <Description video={video} />
+  //       </>
+  //     );
+  //   }
+
+  // shortcut
+  let content = isLoading ? (
+    <>
+      <PlayerLoader />
+      <DescriptionLoader />
+    </>
+  ) : isError ? (
+    <Error message="There was an error!" />
+  ) : video?.id ? (
+    <>
+      <Player link={video.link} title={video.title} />
+      <Description video={video} />
+    </>
+  ) : null;
   return (
     <section className="pt-6 pb-20 min-h-[calc(100vh_-_157px)]">
       <div className="mx-auto max-w-7xl px-2 pb-20 min-h-[400px]">
