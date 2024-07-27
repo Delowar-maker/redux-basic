@@ -4,25 +4,28 @@ export const apiSlice = createApi({
     reducerPath: "api",
     baseQuery: fetchBaseQuery({
         baseUrl: "http://localhost:9000",
-
     }),
     endpoints: (builder) => ({
         getVideos: builder.query({
             query: () => "/videos",
         }),
         getVideo: builder.query({
-            query: (VideoId) => `/videos/${VideoId}`,
+            query: (videoId) => `/videos/${videoId}`,
         }),
-        // ?title_like=css&tile_like=lailwind&_limit=4 (build up query string)
 
-        query: ({ id, title }) => {
-            const tags = title.split(" "); // faka array paop
-            const likes = tags.map((tag) => `title_like=${tag}`);
-            const queryString = `/videos?${likes.join("&")}&_limit=4`;
-            return queryString;
-        },
-
+        getRelatedVideos: builder.query({
+            query: ({ id, title }) => {
+                if (!title) {
+                    return "/videos?_limit=4";
+                }
+                const tags = title.split(" ");
+                const likes = tags.map((tag) => `title_like=${tag}`);
+                const queryString = `/videos?${likes.join("&")}&_limit=4`;
+                return queryString;
+            },
+        }),
     }),
 });
 
-export const { useGetVideosQuery, useGetVideoQuery, useGetRelatedVideosQuery } = apiSlice;
+export const { useGetVideosQuery, useGetVideoQuery, useGetRelatedVideosQuery } =
+    apiSlice;
