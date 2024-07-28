@@ -5,7 +5,7 @@ export const apiSlice = createApi({
     baseQuery: fetchBaseQuery({
         baseUrl: "http://localhost:9000",
     }),
-
+    //catch revalidation befole commit
     tagTypes: ["videos"],
     endpoints: (builder) => ({
         getVideos: builder.query({
