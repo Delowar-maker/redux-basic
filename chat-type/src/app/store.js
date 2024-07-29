@@ -1,8 +1,17 @@
 import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
+import { apiSlice } from "../features/api/apiSlice.js";
 
+import authReducer from '../features/auth/authSlice.js';
+import conversationsReducer from '../features/conversations/conversationsSlice.js';
+import messagesReducer from '../features/messages/messagesSlice.js';
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
+    [apiSlice.reducerPath]: apiSlice.reducer,
+    auth: authReducer,
+    conversations: conversationsReducer,
+    messages: messagesReducer,
+
   },
+  devTools: process.env.NODE_ENV === 'production',
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(apiSlice.middleware),
 });
